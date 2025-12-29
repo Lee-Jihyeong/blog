@@ -1,0 +1,7 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'ko-kr'
+title = 'My New Hugo Site'
+theme = 'ananke'
+
+[params]
+  show_recent_posts = true
