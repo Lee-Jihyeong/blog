@@ -6,3 +6,8 @@ resources/_gen/
 # OS
 .DS_Store
 Thumbs.db
+
+# md
+HOME_SETUP.md
+Hugo_blog_checklist.md
+MULTILANGUAGE.md

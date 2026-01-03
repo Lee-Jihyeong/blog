@@ -1,0 +1,19 @@
+{{ if .IsTranslated }}
+  <div class="lang-switcher">
+    <details class="lang-switcher__details">
+      <summary class="lang-switcher__summary">
+        <span class="lang-switcher__label">{{ .Site.Language.LanguageName }}</span>
+        <span class="lang-switcher__chev">▾</span>
+      </summary>
+      <ul class="lang-switcher__menu">
+        {{ range .Translations }}
+          <li class="lang-switcher__item">
+            <a class="lang-switcher__link" href="{{ .RelPermalink }}">
+              {{ .Language.LanguageName }}
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </details>
+  </div>
+{{ end }}

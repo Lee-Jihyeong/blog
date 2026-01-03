@@ -1,7 +1,99 @@
-baseURL = 'https://lee-jihyeong0823.workers.dev'
+baseURL = 'http://localhost:1313/'
 languageCode = 'ko-kr'
-title = 'My New Hugo Site'
+title = 'Monthly Notes'
 theme = 'ananke'
+# summaryLength = 60
+defaultContentLanguage = "ko"
+defaultContentLanguageInSubdir = true
 
-[params]
-  show_recent_posts = true
+[params.ananke.social.follow]
+  networks = ["github", "linkedin", "instagram"]
+
+[params.ananke.social.github]
+  username = "Lee-Jihyeong"
+
+[params.ananke.social.linkedin]
+  username = "jihyeong-lee-616a431a4"
+
+[params.ananke.social.instagram]
+  username = "ji_hyeong__"
+
+[languages]
+
+[languages.ko]
+  languageCode = "ko-kr"
+  languageName = "Korean"
+  weight = 1
+
+  [languages.ko.params]
+    description = "사이트 설명"
+    mainSections = ["posts", "reading", "travel"]
+    recent_posts_number = 3
+
+  [languages.ko.params.ananke]
+    show_recent_posts = true
+
+[languages.ko.menu]
+    [[languages.ko.menu.main]]
+      name = "About"
+      pageRef = "/about"
+      weight = 10
+
+    [[languages.ko.menu.main]]
+      name = "Articles"
+      pageRef = "/posts"
+      weight = 20
+
+    [[languages.ko.menu.main]]
+      name = "Contact"
+      pageRef = "/contact"
+      weight = 30
+
+    [[languages.ko.menu.main]]
+      name = "Reading"
+      pageRef = "/reading"
+      weight = 40
+
+    [[languages.ko.menu.main]]
+      name = "Travel"
+      pageRef = "/travel"
+      weight = 50
+
+[languages.en]
+  languageCode = "en-us"
+  languageName = "English"
+  weight = 2
+
+  [languages.en.params]
+    description = "Site description"
+    mainSections = ["posts", "reading", "travel"]
+    recent_posts_number = 3
+
+  [languages.en.params.ananke]
+    show_recent_posts = true
+
+  [languages.en.menu]
+    [[languages.en.menu.main]]
+      name = "About"
+      pageRef = "/about"
+      weight = 10
+
+    [[languages.en.menu.main]]
+      name = "Articles"
+      pageRef = "/posts"
+      weight = 20
+
+    [[languages.en.menu.main]]
+      name = "Contact"
+      pageRef = "/contact"
+      weight = 30
+
+    [[languages.en.menu.main]]
+      name = "Reading"
+      pageRef = "/reading"
+      weight = 40
+
+    [[languages.en.menu.main]]
+      name = "Travel"
+      pageRef = "/travel"
+      weight = 50
