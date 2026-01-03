@@ -1,4 +1,4 @@
-baseURL = 'https://jihyeong-blog.lee-jihyeong0823.workers.dev'
+baseURL = 'https://lee-jihyeong0823.workers.dev'
 languageCode = 'ko-kr'
 title = 'My New Hugo Site'
 theme = 'ananke'
