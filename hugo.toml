@@ -1,5 +1,5 @@
 # baseURL = 'http://localhost:1313/' # Dev
-baseURL = 'blog-1un.pages.dev'  # Prod
+baseURL = 'https://2dcfa03f.blog-1un.pages.dev'  # Prod
 languageCode = 'ko-kr'
 title = 'Monthly Notes'
 theme = 'ananke'
