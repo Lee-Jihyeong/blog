@@ -1,0 +1,33 @@
+{{/* 관련 포스트 표시 - 웹페이지에서 실제로 보이는 기능 */}}
+{{- $currentPage := . -}}
+{{- $related := .Site.RegularPages.Related . -}}
+{{- $filteredRelated := slice -}}
+{{- range $related -}}
+  {{- /* 자기 자신 제외, 같은 언어만, draft가 아닌 것만 */ -}}
+  {{- if and (ne .RelPermalink $currentPage.RelPermalink) (eq .Language.Lang $currentPage.Language.Lang) (not .Draft) -}}
+    {{- $filteredRelated = $filteredRelated | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- $filteredRelated = $filteredRelated | first 3 -}}
+{{- with $filteredRelated -}}
+<div class="related-posts mt6 pt4 bt b--black-10">
+  <h3 class="f4 mb3">관련 포스트</h3>
+  <div class="flex flex-wrap">
+    {{- range . -}}
+    <div class="related-post-item w-100 w-third-l pr3-l mb3">
+      <a href="{{ .RelPermalink }}" class="link black dim">
+        <div class="ba b--black-10 br2 pa3 hover-bg-light-gray transition-all">
+          <h4 class="f5 fw6 mt0 mb2">{{ .Title }}</h4>
+          {{- with .Description -}}
+          <p class="f6 gray mt0 mb2">{{ . | truncate 100 }}</p>
+          {{- else -}}
+          <p class="f6 gray mt0 mb2">{{ .Summary | plainify | truncate 100 }}</p>
+          {{- end -}}
+          <time class="f7 gray">{{ .Date.Format "2006-01-02" }}</time>
+        </div>
+      </a>
+    </div>
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}

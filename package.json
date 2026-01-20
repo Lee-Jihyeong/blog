@@ -1,0 +1,14 @@
+{
+  "name": "next-blog",
+  "version": "1.0.0",
+  "description": "Hugo blog with Pagefind search",
+  "scripts": {
+    "build": "hugo && npx pagefind --site public",
+    "dev": "hugo server -D",
+    "pagefind": "npx pagefind --site public"
+  },
+  "devDependencies": {},
+  "keywords": ["hugo", "blog", "pagefind"],
+  "author": "LEE JIHYEONG",
+  "license": "MIT"
+}

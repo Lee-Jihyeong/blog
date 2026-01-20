@@ -7,6 +7,70 @@ theme = 'ananke'
 defaultContentLanguage = "ko"
 defaultContentLanguageInSubdir = true
 
+# Author 정보
+[author]
+  name = "LEE JIHYEONG"
+  email = ""
+  github = "Lee-Jihyeong"
+  linkedin = "jihyeong-lee-616a431a4"
+  instagram = "ji_hyeong__"
+
+# 성능 최적화
+[build]
+  writeStats = true
+  useResourceCacheWhen = "fallback"
+
+# Taxonomies 설정
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# Pagination 설정
+[pagination]
+  pagerSize = 10
+
+# 관련 포스트 설정
+[related]
+  # 최소 유사도 점수 (0-100, 기본값: 80)
+  threshold = 80
+  # 최신 글 포함 여부
+  includeNewer = true
+  # 검색할 인덱스 (태그, 카테고리)
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 80
+
+# Markup 설정
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+
+# 이미지 처리
+[imaging]
+  resampleFilter = "CatmullRom"
+  quality = 75
+  anchor = "smart"
+
+# 보안 및 SEO (최상위 설정)
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = true
+
+# 출력 형식
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+
 [params.ananke.social.follow]
   networks = ["github", "linkedin", "instagram"]
 
@@ -27,9 +91,15 @@ defaultContentLanguageInSubdir = true
   weight = 1
 
   [languages.ko.params]
-    description = "사이트 설명"
+    description = "AI Agent Engineer의 기술 블로그. 실무 인사이트, 실험 기록, 여행과 독서 이야기를 담습니다."
+    author = "LEE JIHYEONG"
     mainSections = ["posts", "reading", "travel"]
     recent_posts_number = 3
+    # SEO 설정
+    og_image = "/images/hero.png"
+    twitter_card = "summary_large_image"
+    # 사이트 설정
+    site_keywords = ["블로그", "기술", "AI", "여행", "독서"]
 
   [languages.ko.params.ananke]
     show_recent_posts = true
@@ -66,9 +136,15 @@ defaultContentLanguageInSubdir = true
   weight = 2
 
   [languages.en.params]
-    description = "Site description"
+    description = "AI Agent Engineer's tech blog. Sharing insights from work, experiment records, travel and reading stories."
+    author = "LEE JIHYEONG"
     mainSections = ["posts", "reading", "travel"]
     recent_posts_number = 3
+    # SEO 설정
+    og_image = "/images/hero.png"
+    twitter_card = "summary_large_image"
+    # 사이트 설정
+    site_keywords = ["blog", "tech", "AI", "travel", "reading"]
 
   [languages.en.params.ananke]
     show_recent_posts = true

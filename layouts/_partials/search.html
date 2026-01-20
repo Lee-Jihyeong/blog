@@ -1,0 +1,143 @@
+{{/* Pagefind 검색 UI */}}
+<div id="search" class="pagefind-search"></div>
+
+<script>
+  // Pagefind UI 인스턴스 저장
+  let pagefindUIInstance = null;
+  
+  // Pagefind UI 초기화 함수
+  window.initPagefind = async function() {
+    // 이미 초기화되었고 인스턴스가 있으면 재사용
+    if (pagefindUIInstance) {
+      return pagefindUIInstance;
+    }
+    
+    try {
+      // pagefind-ui.js 사용 (전통적인 방식, 더 안정적)
+      await import("/_pagefind/pagefind-ui.js");
+      
+      // PagefindUI는 전역 변수로 사용 가능
+      if (typeof window.PagefindUI === 'undefined') {
+        throw new Error('PagefindUI가 로드되지 않았습니다.');
+      }
+      
+      // baseUrl 설정: 현재 페이지의 실제 경로 기반으로 설정
+      // Hugo의 defaultContentLanguageInSubdir = true 설정 때문에
+      // 기본 언어도 /ko/ 경로를 사용하므로 현재 경로를 기준으로 설정
+      const currentPath = window.location.pathname;
+      let baseUrl = '/';
+      
+      // 현재 경로에서 언어 코드 추출 (예: /ko/posts/...)
+      const langMatch = currentPath.match(/^\/(ko|en)\//);
+      if (langMatch) {
+        baseUrl = '/' + langMatch[1] + '/';
+      } else {
+        // 언어 코드가 없으면 기본 경로 사용
+        baseUrl = '/';
+      }
+      
+      pagefindUIInstance = new window.PagefindUI({
+        element: "#search",
+        baseUrl: baseUrl,
+        showImages: false,
+        showSubResults: true,
+        excerptLength: 15,
+        resetStyles: false,
+        processResult: function(result) {
+          // Pagefind가 생성한 URL을 Hugo의 실제 경로로 변환
+          if (result && result.url) {
+            let url = result.url;
+            
+            // 디버깅을 위한 로그 (개발 환경에서만)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Pagefind 원본 URL:', url);
+              console.log('현재 baseUrl:', baseUrl);
+            }
+            
+            // /ko/ko/ 같은 중복 경로 제거
+            url = url.replace(/\/ko\/ko\//g, '/ko/');
+            url = url.replace(/\/en\/en\//g, '/en/');
+            
+            // 상대 경로를 절대 경로로 변환
+            if (!url.startsWith('/')) {
+              url = '/' + url;
+            }
+            
+            // baseUrl이 /ko/이고 url이 /posts/code-example/ 또는 /ko/posts/code-example/인 경우 처리
+            if (baseUrl !== '/') {
+              const base = baseUrl.replace(/\/$/, ''); // /ko/ -> /ko
+              
+              // URL이 이미 baseUrl로 시작하는지 확인
+              if (url.startsWith(base + '/')) {
+                // 이미 올바른 경로 (예: /ko/posts/code-example/)
+                // 중복만 제거하면 됨
+              } else {
+                // URL이 /posts/code-example/ 같은 형식이면 baseUrl 추가
+                // 단, /ko/나 /en/으로 시작하지 않는 경우만
+                if (!url.match(/^\/(ko|en)\//)) {
+                  const path = url.replace(/^\//, ''); // /posts/code-example/ -> posts/code-example/
+                  url = base + '/' + path;
+                }
+              }
+            }
+            
+            // 마지막 슬래시 정리 (Hugo는 보통 /posts/code-example/ 형식 사용)
+            if (!url.endsWith('/') && !url.match(/\.(html|htm)$/i)) {
+              url = url + '/';
+            }
+            
+            // 결과 URL 업데이트
+            if (result.meta) {
+              result.meta.url = url;
+            }
+            result.url = url;
+            
+            // 디버깅을 위한 로그 (개발 환경에서만)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Pagefind 수정된 URL:', url);
+            }
+          }
+          return result;
+        },
+        translations: {
+          {{- if eq .Language.Lang "ko" -}}
+          placeholder: "검색...",
+          clear_search: "지우기",
+          load_more: "더 보기",
+          search_label: "검색",
+          filters_label: "필터",
+          zero_results: "결과 없음",
+          many_results: "[COUNT]개의 결과",
+          one_result: "1개의 결과",
+          alt_search: "[query]에 대한 결과 없음. 대신 [alt_query]를 검색해보세요.",
+          search_suggestion: "[query]에 대한 결과 없음. 대신 [alt_query]를 검색해보세요.",
+          {{- else -}}
+          placeholder: "Search...",
+          clear_search: "Clear",
+          load_more: "Load more results",
+          search_label: "Search",
+          filters_label: "Filters",
+          zero_results: "No results found",
+          many_results: "[COUNT] results found",
+          one_result: "1 result found",
+          alt_search: "No results for [query]. Try [alt_query] instead.",
+          search_suggestion: "No results for [query]. Try [alt_query] instead.",
+          {{- end -}}
+        }
+      });
+      
+      return pagefindUIInstance;
+    } catch (err) {
+      console.error('Pagefind 로드 실패:', err);
+      console.error('에러 상세:', err.stack);
+      return null;
+    }
+  };
+  
+  // 페이지 로드 시 즉시 초기화 시도 (모달 밖에서도 준비)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.initPagefind);
+  } else {
+    window.initPagefind();
+  }
+</script>

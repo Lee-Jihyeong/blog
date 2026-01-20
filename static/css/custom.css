@@ -77,3 +77,197 @@
 .lang-switcher__summary::-webkit-details-marker {
   display: none;
 }
+
+/* 웹페이지에서 실제로 보이는 개선사항 */
+
+/* 관련 포스트 스타일 */
+.related-posts {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.related-post-item {
+  transition: transform 0.2s ease;
+}
+
+.related-post-item:hover {
+  transform: translateY(-2px);
+}
+
+.related-post-item .hover-bg-light-gray:hover {
+  background-color: #f5f5f5;
+}
+
+.transition-all {
+  transition: all 0.2s ease;
+}
+
+/* 향상된 태그/카테고리 스타일 */
+.post-taxonomies {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.post-taxonomies .hover-bg-black-10:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.post-taxonomies .hover-bg-blue:hover {
+  background-color: #357abd;
+}
+
+.post-taxonomies .hover-white:hover {
+  color: white;
+}
+
+/* Pagefind 검색 기능 스타일 */
+
+/* 검색 버튼 */
+.search-toggle-button {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.5rem;
+  margin-left: 1rem; /* 간격 증가 (0.75rem -> 1rem) */
+  cursor: pointer;
+  color: #f7f7f7;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.search-toggle-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.search-toggle-button:active {
+  transform: translateY(0);
+}
+
+/* 검색 모달 */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.search-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  pointer-events: auto; /* 오버레이 클릭은 가능하지만 */
+  z-index: 1; /* 콘텐츠보다 뒤에 */
+}
+
+.search-modal-content {
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  margin: 5vh auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 10; /* 오버레이보다 앞에 */
+  pointer-events: auto; /* 클릭 가능 */
+}
+
+.search-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+
+.search-modal-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Pagefind UI 커스터마이징 */
+.pagefind-search {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Pagefind 입력창이 클릭 가능하도록 */
+.pagefind-ui,
+.pagefind-ui * {
+  pointer-events: auto !important;
+}
+
+.pagefind-ui__search-input {
+  pointer-events: auto !important;
+  z-index: 10 !important;
+  position: relative;
+}
+
+/* 검색 모달 내부 요소들이 클릭 가능하도록 */
+.search-modal-content {
+  pointer-events: auto;
+}
+
+.search-modal-content * {
+  pointer-events: auto;
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .search-modal-content {
+    background: #1a1a1a;
+    color: #f0f0f0;
+  }
+  
+  .search-modal-close {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+  }
+  
+  .search-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .search-modal-content {
+    width: 95%;
+    margin: 2vh auto;
+    max-height: 90vh;
+  }
+  
+  .pagefind-search {
+    padding: 1rem;
+  }
+  
+  .search-modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+  }
+}

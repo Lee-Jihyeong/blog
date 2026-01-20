@@ -1,0 +1,36 @@
+{{/* 향상된 태그 표시 - 더 예쁘게 스타일링 */}}
+{{- $tags := .GetTerms "tags" -}}
+{{- $categories := .GetTerms "categories" -}}
+{{- if or $tags $categories -}}
+<div class="post-taxonomies mt4 pt3 bt b--black-10">
+  {{- if $categories -}}
+  <div class="mb3">
+    <span class="f6 b tracked ttu gray">카테고리:</span>
+    <ul class="list pa0 ma0 mt2">
+      {{- range $categories -}}
+      <li class="dib mr2 mb2">
+        <a href="{{ .RelPermalink }}" class="link f6 br-pill ba ph3 pv2 dib black-70 hover-bg-black-10 hover-black transition-all">
+          {{- .LinkTitle -}}
+        </a>
+      </li>
+      {{- end -}}
+    </ul>
+  </div>
+  {{- end -}}
+  
+  {{- if $tags -}}
+  <div>
+    <span class="f6 b tracked ttu gray">태그:</span>
+    <ul class="list pa0 ma0 mt2">
+      {{- range $tags -}}
+      <li class="dib mr2 mb2">
+        <a href="{{ .RelPermalink }}" class="link f6 br-pill ba ph2 pv1 dib black-60 hover-bg-blue hover-white transition-all">
+          #{{- .LinkTitle -}}
+        </a>
+      </li>
+      {{- end -}}
+    </ul>
+  </div>
+  {{- end -}}
+</div>
+{{- end -}}

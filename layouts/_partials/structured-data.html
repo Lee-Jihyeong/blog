@@ -1,0 +1,95 @@
+{{/* 구조화된 데이터 (JSON-LD) - SEO 강화 */}}
+{{- if .IsPage -}}
+  {{/* 블로그 포스트용 구조화된 데이터 */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ .Title | jsonify }},
+    "description": {{ .Description | default .Summary | jsonify }},
+    "author": {
+      "@type": "Person",
+      "name": {{ (.Params.author | default .Site.Params.author) | jsonify }},
+      {{- $githubUser := "" }}
+      {{- if .Site.Params.ananke.social.github }}
+        {{- $githubUser = .Site.Params.ananke.social.github.username }}
+      {{- end }}
+      {{- if $githubUser }}
+      "url": {{ printf "https://github.com/%s" $githubUser | jsonify }},
+      {{- end }}
+      {{- $linkedinUser := "" }}
+      {{- if .Site.Params.ananke.social.linkedin }}
+        {{- $linkedinUser = .Site.Params.ananke.social.linkedin.username }}
+      {{- end }}
+      {{- if $linkedinUser }}
+      "sameAs": {{ printf "https://www.linkedin.com/in/%s" $linkedinUser | jsonify }}
+      {{- end }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ .Site.Title | jsonify }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ (printf "%s%s" .Site.BaseURL "/images/hero.png") | jsonify }}
+      }
+    },
+    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    {{- with .Lastmod }}
+    "dateModified": {{ .Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    {{- end }}
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ .Permalink | jsonify }}
+    },
+    {{- with .Params.featured_image }}
+    "image": {
+      "@type": "ImageObject",
+      "url": {{ (printf "%s%s" $.Site.BaseURL .) | jsonify }},
+      "width": 1200,
+      "height": 630
+    },
+    {{- end }}
+    {{- with .Params.tags }}
+    "keywords": {{ . | jsonify }},
+    {{- end }}
+    "articleSection": {{ .Section | jsonify }},
+    "inLanguage": {{ .Language.Lang | jsonify }}
+  }
+  </script>
+{{- else if .IsHome -}}
+  {{/* 홈페이지용 구조화된 데이터 */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ .Site.Title | jsonify }},
+    "description": {{ .Site.Params.description | jsonify }},
+    "url": {{ .Site.BaseURL | jsonify }},
+    "author": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author | jsonify }}
+    },
+    "inLanguage": {{ .Site.LanguageCode | jsonify }},
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": {{ (printf "%s/search/?q={search_term_string}" .Site.BaseURL) | jsonify }}
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+{{- else if eq .Kind "section" -}}
+  {{/* 섹션 페이지용 구조화된 데이터 */}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": {{ .Title | jsonify }},
+    "description": {{ .Description | default .Summary | jsonify }},
+    "url": {{ .Permalink | jsonify }},
+    "inLanguage": {{ .Language.Lang | jsonify }}
+  }
+  </script>
+{{- end }}
