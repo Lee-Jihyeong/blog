@@ -1,5 +1,5 @@
 # baseURL = 'http://localhost:1313/' # Dev
-baseURL = 'https://blog-1un.pages.dev'  # Prod
+baseURL = 'https://jihyeong.dev'  # Prod
 languageCode = 'ko-kr'
 title = 'Monthly Notes'
 theme = 'ananke'
@@ -131,7 +131,7 @@ enableEmoji = true
       weight = 50
 
     [[languages.ko.menu.main]]
-      name = "Language Log"
+      name = "Lang"
       pageRef = "/language-log"
       weight = 60
 
@@ -181,6 +181,6 @@ enableEmoji = true
       weight = 50
 
     [[languages.en.menu.main]]
-      name = "Language Log"
+      name = "Lang"
       pageRef = "/language-log"
       weight = 60

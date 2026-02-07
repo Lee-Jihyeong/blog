@@ -78,6 +78,11 @@
   display: none;
 }
 
+.summary-excerpt {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 /* 웹페이지에서 실제로 보이는 개선사항 */
 
 /* 관련 포스트 스타일 */
