@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Travel Section Hero</title>
+  <desc id="desc">Landscape and route themed hero image</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="60%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <path d="M0 640 Q260 560 520 640 T1040 640 T1600 640 V900 H0 Z" fill="#115e59" opacity="0.75"/>
+  <path d="M0 720 Q300 650 600 720 T1200 720 T1600 720 V900 H0 Z" fill="#134e4a" opacity="0.85"/>
+  <path d="M920 310c150 0 220 70 280 130" fill="none" stroke="#f8fafc" stroke-width="14" stroke-linecap="round" stroke-dasharray="16 20" opacity="0.9"/>
+  <text x="120" y="470" fill="#ffffff" font-size="84" font-family="Georgia, serif">Travel</text>
+  <text x="120" y="540" fill="#e0f2fe" font-size="34" font-family="Arial, sans-serif">Routes, places, and memories</text>
+</svg>

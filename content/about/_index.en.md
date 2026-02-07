@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: "LEE JIHYEONG"
-featured_image: "/images/hero.png"
+featured_image: "/images/sections/about-hero.svg"
 ---
 
 Hi, I work as an AI agent Engineer.  

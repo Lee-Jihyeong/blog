@@ -1,7 +1,7 @@
 ---
 title: "About"
 description: "LEE JIHYEONG"
-featured_image: "/images/hero.png"
+featured_image: "/images/sections/about-hero.svg"
 ---
 
 안녕하세요, AI agent Engineer로 일하고 있습니다.

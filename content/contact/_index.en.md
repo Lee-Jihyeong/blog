@@ -1,7 +1,7 @@
 ---
 title: "Contact"
 description: "Contact page"
-featured_image: "/images/hero.png"
+featured_image: "/images/sections/contact-hero.svg"
 ---
 
 Please reach out with proposals, collaboration requests, or feedback.  

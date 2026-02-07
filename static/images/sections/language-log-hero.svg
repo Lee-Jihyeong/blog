@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Language Log Section Hero</title>
+  <desc id="desc">Language learning themed hero image</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="55%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.26" fill="#c7d2fe">
+    <circle cx="1080" cy="320" r="160"/>
+    <circle cx="1300" cy="470" r="190"/>
+  </g>
+  <g fill="#ecfeff" font-size="52" font-family="Arial, sans-serif" opacity="0.85">
+    <text x="1030" y="320">EN</text>
+    <text x="1270" y="490">JP</text>
+  </g>
+  <text x="120" y="470" fill="#ffffff" font-size="84" font-family="Georgia, serif">Language Log</text>
+  <text x="120" y="540" fill="#ccfbf1" font-size="34" font-family="Arial, sans-serif">Daily English and Japanese practice notes</text>
+</svg>
