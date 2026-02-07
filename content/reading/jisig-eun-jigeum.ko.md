@@ -1,0 +1,22 @@
+---
+title: "지식은 지금"
+date: 2026-02-07T10:10:00+09:00
+draft: true
+description: "『지식은 지금』 독서 감상 초안"
+tags: ["독서", "감상문", "서평"]
+categories: ["Reading"]
+author: "LEE JIHYEONG"
+toc: true
+show_reading_time: true
+---
+
+## 한줄 요약
+
+<!--more-->
+
+## 인상 깊었던 문장
+
+## 감상
+
+## 기록
+
